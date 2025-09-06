@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Guía - Torres del Paine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            transition: all 0.2s;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+        label {
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #1e40af;
+        }
+        .file-input-label {
+            background-color: #f1f5f9;
+            border: 1px dashed #cbd5e1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            text-align: center;
+            color: #64748b;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <div class="form-container">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Reporte de Guía</h1>
+        <p class="text-center text-gray-500 mb-8">Parque Nacional Torres del Paine</p>
+
+        <!-- Sección 1: Datos Generales -->
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-700 section-header">1. Información del Servicio</h2>
+            <div class="input-group">
+                <label for="guia">Nombre del Guía</label>
+                <input type="text" id="guia" placeholder="Ej. Juan Pérez" class="mt-1">
+            </div>
+            <div class="input-group">
+                <label for="codigo">Código de Reserva</label>
+                <input type="text" id="codigo" placeholder="Ej. TPN2025-001" class="mt-1">
+            </div>
+            <div class="input-group">
+                <label for="pasajeros">Nombre de los Pasajeros</label>
+                <textarea id="pasajeros" rows="3" placeholder="Ej. John Smith, Jane Doe, Peter Parker" class="mt-1"></textarea>
+            </div>
+        </div>
+
+        <!-- Sección 2: Clima y Logística -->
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-700 section-header">2. Condiciones del Terreno</h2>
+            <div class="input-group">
+                <label for="clima">Condición Climática</label>
+                <select id="clima" class="mt-1">
+                    <option value="">Seleccione...</option>
+                    <option value="soleado">Soleado</option>
+                    <option value="lluvia">Lluvioso</option>
+                    <option value="viento">Ventoso</option>
+                    <option value="nieve">Nevada</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="temperatura">Temperatura (°C)</label>
+                <input type="number" id="temperatura" placeholder="Ej. 12" class="mt-1">
+            </div>
+            <div class="input-group">
+                <label for="ruta">Ruta Recorrida</label>
+                <input type="text" id="ruta" placeholder="Ej. Circuito W" class="mt-1">
+            </div>
+        </div>
+
+        <!-- Sección 3: Avistamientos y Tópicos -->
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-700 section-header">3. Avistamientos</h2>
+            <div class="input-group">
+                <label for="fauna">Avistamiento de Fauna</label>
+                <select id="fauna" class="mt-1">
+                    <option value="">Seleccione...</option>
+                    <option value="puma">Puma</option>
+                    <option value="huemul">Huemul</option>
+                    <option value="condor">Cóndor</option>
+                    <option value="zorro">Zorro</option>
+                    <option value="ave">Ave (especificar)</option>
+                    <option value="ninguno">Ninguno</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="comentarios-fauna">Comentarios del Avistamiento</label>
+                <textarea id="comentarios-fauna" rows="2" placeholder="Ej. Se observó un huemul a 50 metros del sendero" class="mt-1"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="topicos">Tópicos Explicados</label>
+                <div class="mt-2 flex flex-col space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="topicos" value="geologia" class="rounded text-blue-500">
+                        <span class="ml-2 text-gray-600">Geología y formación del paisaje</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="topicos" value="glaciares" class="rounded text-blue-500">
+                        <span class="ml-2 text-gray-600">Glaciares y cambio climático</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="topicos" value="historia" class="rounded text-blue-500">
+                        <span class="ml-2 text-gray-600">Historia de la región y el parque</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="topicos" value="flora" class="rounded text-blue-500">
+                        <span class="ml-2 text-gray-600">Flora nativa y ecosistema</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 4: Documentación -->
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-gray-700 section-header">4. Documentación y Evidencia</h2>
+            <div class="input-group">
+                <label for="archivos" class="file-input-label">
+                    <span class="block mb-2 text-gray-800">Sube fotos del servicio</span>
+                    <span class="text-sm font-normal text-gray-500">Haz clic para seleccionar o arrastra y suelta aquí.</span>
+                    <input type="file" id="archivos" multiple class="hidden">
+                </label>
+            </div>
+            <div class="input-group">
+                <label for="tickets">Foto de tickets de entrada</label>
+                <input type="file" id="tickets" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </div>
+        </div>
+
+        <!-- Botón de Envío -->
+        <div class="text-center">
+            <button type="submit" class="btn-primary w-full">Enviar Reporte</button>
+        </div>
+    </div>
+
+</body>
+</html>
