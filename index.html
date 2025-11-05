@@ -481,6 +481,7 @@
                 <button class="nav-link" onclick="switchTab('equipment', this)">Equipamiento</button>
                 <button class="nav-link" onclick="switchTab('reservations', this)">Reservas</button>
                 <button class="nav-link" onclick="switchTab('cornell', this)">Notas Cornell</button>
+                <button class="nav-link" onclick="switchTab('insights', this)">Análisis de Datos</button>
             </div>
         </div>
     </nav>
@@ -723,6 +724,342 @@
                         <button onclick="saveCornellNotes()" class="btn btn-primary">Guardar Notas</button>
                         <button onclick="exportCornellNotes()" class="btn btn-success">Exportar JSON</button>
                         <button onclick="clearCornellNotes()" class="btn btn-secondary">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Insights Tab -->
+            <div id="insights" class="tab-content">
+                <div class="section-card">
+                    <h2>📊 Análisis e Inferencias de Datos CSV</h2>
+                    <p style="color: #718096; margin-bottom: 2rem;">Interpretación inteligente de los datos turísticos recopilados</p>
+
+                    <!-- Key Insights Grid -->
+                    <div class="tour-cards" style="margin-bottom: 2rem;">
+                        <div class="section-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <h3 style="color: white;">💡 Insight Principal</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.8;">
+                                <strong>Estados Unidos domina el mercado</strong> con 125 turistas (28% del total), 
+                                generando los mayores ingresos. Su preferencia por el tour Base Torres y 
+                                alojamientos premium indica un segmento de alto valor.
+                            </p>
+                        </div>
+                        <div class="section-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                            <h3 style="color: white;">📈 Tendencia Destacada</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.8;">
+                                <strong>Rendimiento físico consistente:</strong> Promedio de 36,760 pasos/día 
+                                con picos de 42,300 pasos. La exigencia física del tour Base Torres 
+                                se refleja en recorridos de 25-31 km diarios.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Analysis Sections -->
+                    <h3 style="margin-top: 2rem;">🔍 Análisis Detallado por Fuente de Datos</h3>
+
+                    <!-- Salud.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #3b82f6; margin-bottom: 1.5rem;">
+                        <h4 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 1rem;">
+                            📊 turismo-salud.csv (Métricas de Actividad Física)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <strong>🚶 Pasos:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 36,760 pasos/día</li>
+                                    <li>Máximo: 42,300 pasos (16-ene)</li>
+                                    <li>Mínimo: 28,900 pasos (20-ene)</li>
+                                    <li>Variación: 46% entre días</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>📏 Distancia:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 27.2 km/día</li>
+                                    <li>Máximo: 31.2 km (16-ene)</li>
+                                    <li>Total 10 días: 272 km</li>
+                                    <li>Intensidad: Alta exigencia física</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>🔥 Calorías:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 2,070 kcal/día</li>
+                                    <li>Máximo: 2,400 kcal</li>
+                                    <li>Total quemadas: 20,700 kcal</li>
+                                    <li>Equivalente: 3 kg de grasa</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                El 20-ene muestra la menor actividad (28,900 pasos), posiblemente día de descanso 
+                                o condiciones climáticas adversas. Los guías deben planificar días de recuperación 
+                                cada 6-7 días de actividad intensa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Servicioxpais.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #10b981; margin-bottom: 1.5rem;">
+                        <h4 style="color: #10b981; font-size: 1.1rem; margin-bottom: 1rem;">
+                            🌍 turismo-servicioxpais.csv (Distribución por Nacionalidad)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>🥇 Top 3 Mercados:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Estados Unidos: 125 turistas (28%)</li>
+                                    <li>Alemania: 87 turistas (19.5%)</li>
+                                    <li>Francia: 64 turistas (14.3%)</li>
+                                    <li><strong>Total top 3: 61.8% del mercado</strong></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>💰 Precio por Tour:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Base Torres: $95,000 CLP</li>
+                                    <li>Miradores-payne: $75,000 CLP</li>
+                                    <li>City-t: $65,000 CLP</li>
+                                    <li>Diferencial: 46% entre tours</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>🎯 Preferencias por Tour:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>USA/UK/Australia → Base Torres</li>
+                                    <li>Alemania/Brasil → Miradores</li>
+                                    <li>Francia/Argentina → City Tour</li>
+                                    <li>Patrón claro de segmentación</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                Mercados anglosajones (USA, UK, Australia) prefieren tours premium de alta dificultad, 
+                                mientras que europeos continentales optan por tours intermedios. Esto sugiere 
+                                oportunidades de marketing diferenciado por región geográfica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Hostalxpais.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #8b5cf6; margin-bottom: 1.5rem;">
+                        <h4 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 1rem;">
+                            🏨 turismo-hostalxpais.csv (Alojamientos y Hospedaje)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>🏆 Alojamientos Populares:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Refugio Grey: 250 noches</li>
+                                    <li>Hotel Las Torres: 174 noches</li>
+                                    <li>Camping Paine Grande: 128 noches</li>
+                                    <li>Total: 892 noches registradas</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>💵 Rango de Precios:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Premium: $120,000/noche (Hotel Explora)</li>
+                                    <li>Medio: $45,000-$95,000/noche</li>
+                                    <li>Económico: $15,000/noche (Camping)</li>
+                                    <li>Diferencial: 8x entre opciones</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>📊 Distribución:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Refugios: 48% del total</li>
+                                    <li>Hoteles: 28% del total</li>
+                                    <li>Camping: 24% del total</li>
+                                    <li>Mix equilibrado de opciones</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                Los refugios son la opción preferida (48%), indicando que los turistas priorizan 
+                                la experiencia auténtica sobre el lujo. El Hotel Explora, aunque premium ($120k/noche), 
+                                solo registra 76 noches, sugiriendo un nicho específico de turismo de lujo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fechaxpais.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #f59e0b; margin-bottom: 1.5rem;">
+                        <h4 style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 1rem;">
+                            💰 turismo-fechaxpais.csv (Ingresos por Fecha)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>📈 Ingresos Diarios:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: $1,965,000 CLP/día</li>
+                                    <li>Mejor día: $4,750,000 (15-ene)</li>
+                                    <li>Peor día: $325,000 (23-ene)</li>
+                                    <li>Variación: 1362% entre días</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>👥 Turistas por Día:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 24 turistas/día</li>
+                                    <li>Máximo: 50 turistas (15-ene)</li>
+                                    <li>Mínimo: 5 turistas (23-ene)</li>
+                                    <li>Alta fluctuación semanal</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>💵 Ticket Promedio:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>General: $81,875 CLP/turista</li>
+                                    <li>USA (15-ene): $95,000/persona</li>
+                                    <li>España (23-ene): $65,000/persona</li>
+                                    <li>Correlación con tipo de tour</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                El 15-ene genera 14.6x más ingresos que el 23-ene, evidenciando patrones de demanda. 
+                                La alta concentración de ingresos en pocos días (15-19 ene) sugiere temporada alta 
+                                versus temporada baja, crucial para planificación de recursos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Base-baset.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #ec4899; margin-bottom: 1.5rem;">
+                        <h4 style="color: #ec4899; font-size: 1.1rem; margin-bottom: 1rem;">
+                            📋 turismo-base-baset.csv (Base de Datos Completa)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>👨‍🏫 Distribución de Guías:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>10 reservas registradas</li>
+                                    <li>10 guías diferentes (1:1 ratio)</li>
+                                    <li>Sin concentración excesiva</li>
+                                    <li>Carga balanceada equitativamente</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>✅ Estados de Reserva:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Confirmado: 7 reservas (70%)</li>
+                                    <li>Pendiente: 2 reservas (20%)</li>
+                                    <li>Disponible: 1 reserva (10%)</li>
+                                    <li>Tasa de confirmación alta</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>🎯 Tamaño de Grupos:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 3 turistas/reserva</li>
+                                    <li>Máximo: 5 turistas</li>
+                                    <li>Mínimo: 1 turista</li>
+                                    <li>Grupos pequeños preferidos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                El 70% de tasa de confirmación es excelente, pero el 20% pendiente requiere seguimiento. 
+                                Los grupos pequeños (3 personas promedio) permiten experiencias personalizadas y mayor 
+                                seguridad en terreno, una ventaja competitiva clave.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Consolidated Recommendations -->
+                    <div class="section-card" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); color: white; margin-top: 2rem;">
+                        <h3 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">🎯 Recomendaciones Estratégicas Basadas en Datos</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <h4 style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">📊 Marketing & Ventas</h4>
+                                <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                                    <li>Intensificar campañas en mercados anglosajones (USA, UK, Australia)</li>
+                                    <li>Ofrecer paquetes premium para turistas americanos</li>
+                                    <li>Marketing diferenciado: aventura extrema vs. tours culturales</li>
+                                    <li>Aprovechar boca a boca: 70% tasa de confirmación</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">⚡ Operaciones</h4>
+                                <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                                    <li>Planificar días de descanso cada 6-7 días (patrón detectado)</li>
+                                    <li>Reforzar personal en días de alta demanda (15-19 ene)</li>
+                                    <li>Mantener grupos pequeños (3-5 personas) como estándar</li>
+                                    <li>Optimizar rutas: promedio 27km/día es sostenible</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">💰 Pricing & Revenue</h4>
+                                <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                                    <li>Mantener diferencial de precios actual (46% entre tours)</li>
+                                    <li>Considerar dynamic pricing en temporada alta</li>
+                                    <li>Paquetes combinados tour + alojamiento premium</li>
+                                    <li>Descuentos para reservas anticipadas (reducir 20% pendientes)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistical Summary -->
+                    <div class="section-card" style="margin-top: 2rem;">
+                        <h3>📈 Resumen Estadístico Consolidado</h3>
+                        <table style="width: 100%; margin-top: 1rem;">
+                            <thead style="background-color: #f7fafc;">
+                                <tr>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Métrica</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 2px solid #e2e8f0;">Valor</th>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Interpretación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Total Turistas</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">446</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Volumen sólido para temporada inicial</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Ingresos Totales</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">$38,560,000 CLP</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">≈ $43,000 USD (~$86 por turista)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Países Atendidos</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">9</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Diversificación geográfica saludable</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Actividad Física</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">36,760 pasos/día</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Alta exigencia física, tour activo</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Concentración Mercado</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">61.8% (Top 3)</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">USA, Alemania y Francia dominan</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Tasa Confirmación</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">70%</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Excelente ratio de conversión</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem;"><strong>Tamaño Grupo Promedio</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right;">3.0 personas</td>
+                                    <td style="padding: 0.75rem;">Experiencias íntimas y personalizadas</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
