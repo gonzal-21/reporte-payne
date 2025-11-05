@@ -1,0 +1,11 @@
+id,fecha,guia,pais,turistas,tour,precio,hostal,estado_reserva
+1,2024-01-15,Juan Pérez,Estados Unidos,5,btorres,95000,Refugio Grey,confirmado
+2,2024-01-15,María González,Alemania,4,Miradores-payne,75000,Hotel Las Torres,confirmado
+3,2024-01-16,Pedro Silva,Francia,3,City-t,65000,Camping Paine Grande,confirmado
+4,2024-01-17,Ana Rojas,Reino Unido,4,btorres,95000,Refugio Paine Grande,pendiente
+5,2024-01-18,Carlos Muñoz,Brasil,2,Miradores-payne,75000,Hotel Explora,confirmado
+6,2024-01-19,Laura Torres,Argentina,3,City-t,65000,Camping Italiano,confirmado
+7,2024-01-20,Diego Castro,Australia,2,btorres,95000,Refugio Chileno,confirmado
+8,2024-01-21,Sofia Vargas,Canada,2,Miradores-payne,75000,EcoCamp,pendiente
+9,2024-01-22,Miguel Ponce,España,1,City-t,65000,Camping Torres,confirmado
+10,2024-01-23,Carla Díaz,Estados Unidos,4,btorres,95000,Refugio Grey,disponible

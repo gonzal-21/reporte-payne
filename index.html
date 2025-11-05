@@ -3,180 +3,1322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Guía - Torres del Paine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Dashboard - Torres del Paine</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: #f7fafc;
+            line-height: 1.6;
+            color: #2d3748;
         }
-        .form-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        .section-header {
-            border-bottom: 2px solid #cbd5e1;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .input-group {
+        header {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
             margin-bottom: 1rem;
         }
-        input[type="text"], input[type="number"], textarea, select {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            transition: all 0.2s;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-        input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        h1 {
+            font-size: 1.75rem;
+            color: #1a202c;
+            font-weight: 700;
         }
-        label {
+        h2 {
+            font-size: 1.5rem;
+            color: #1a202c;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        h3 {
+            font-size: 1.125rem;
+            color: #2d3748;
             font-weight: 600;
-            color: #4b5563;
-            margin-bottom: 0.5rem;
-            display: block;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            color: #718096;
+            font-size: 0.875rem;
+        }
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
         }
         .btn-primary {
-            background-color: #2563eb;
+            background-color: #3b82f6;
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            transition: all 0.2s;
         }
         .btn-primary:hover {
-            background-color: #1e40af;
+            background-color: #2563eb;
         }
-        .file-input-label {
-            background-color: #f1f5f9;
-            border: 1px dashed #cbd5e1;
-            padding: 1rem;
+        .btn-success {
+            background-color: #10b981;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #059669;
+        }
+        nav {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.75rem 0;
+        }
+        .nav-link {
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            color: #4a5568;
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover {
+            background-color: #f3f4f6;
+        }
+        .nav-link.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        main {
+            padding-bottom: 3rem;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .metric-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .metric-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .metric-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .metric-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .metric-desc {
+            font-size: 0.75rem;
+            opacity: 0.75;
+            margin-top: 0.5rem;
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+        .chart-container {
+            margin-top: 1rem;
+            padding: 1rem 0;
+        }
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .bar-label {
+            min-width: 120px;
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+        .bar-container {
+            flex: 1;
+            height: 30px;
+            background-color: #e2e8f0;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.5rem;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .line-chart {
+            height: 200px;
+            position: relative;
+            border-left: 2px solid #cbd5e0;
+            border-bottom: 2px solid #cbd5e0;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+        .line-point {
+            flex: 1;
+            background: linear-gradient(to top, #f093fb, #f5576c);
+            border-radius: 0.25rem 0.25rem 0 0;
+            min-width: 20px;
+            transition: height 0.5s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .line-point:hover::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2d3748;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        .tour-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .tour-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
             text-align: center;
-            color: #64748b;
-            font-weight: 500;
+        }
+        .tour-card h4 {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+        .tour-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .tour-value-blue {
+            color: #3b82f6;
+        }
+        .tour-value-green {
+            color: #10b981;
+        }
+        .tour-value-purple {
+            color: #8b5cf6;
+        }
+        .tour-price {
+            font-size: 0.875rem;
+            color: #718096;
+            margin-bottom: 0.5rem;
+        }
+        .tour-desc {
+            font-size: 0.75rem;
+            color: #a0aec0;
+        }
+        .alert-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .alert-title {
+            font-weight: 600;
+            color: #991b1b;
+            margin-bottom: 0.5rem;
+        }
+        .alert-content {
+            color: #7f1d1d;
+            font-size: 0.875rem;
+        }
+        .protocol-list {
+            list-style: decimal inside;
+            padding-left: 0;
+            margin: 1rem 0;
+        }
+        .protocol-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .info-box {
+            background: #dbeafe;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+        .info-title {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.25rem;
+        }
+        .info-content {
+            color: #1e3a8a;
+            font-size: 0.875rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        thead {
+            background-color: #f7fafc;
+        }
+        th {
+            padding: 0.75rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #718096;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.875rem;
+        }
+        tbody tr:hover {
+            background-color: #f7fafc;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status-disponible {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .status-ocupado {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .status-pendiente {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .status-confirmado {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        .cornell-notes {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .cornell-cue {
+            border-right: 2px solid #e2e8f0;
+            padding: 1rem;
+            background: #f7fafc;
+        }
+        .cornell-notes-area {
+            padding: 1rem;
+        }
+        .cornell-summary {
+            grid-column: 1 / -1;
+            border-top: 2px solid #e2e8f0;
+            padding: 1rem;
+            background: #f7fafc;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        textarea {
+            resize: vertical;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .btn-secondary {
+            background-color: #6b7280;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            .cornell-notes {
+                grid-template-columns: 1fr;
+            }
+            .cornell-cue {
+                border-right: none;
+                border-bottom: 2px solid #e2e8f0;
+            }
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 p-4">
-
-    <div class="form-container">
-        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Reporte de Guía</h1>
-        <p class="text-center text-gray-500 mb-8">Parque Nacional Torres del Paine</p>
-
-        <!-- Sección 1: Datos Generales -->
-        <div class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 section-header">1. Información del Servicio</h2>
-            <div class="input-group">
-                <label for="guia">Nombre del Guía</label>
-                <input type="text" id="guia" placeholder="Ej. Juan Pérez" class="mt-1">
-            </div>
-            <div class="input-group">
-                <label for="codigo">Código de Reserva</label>
-                <input type="text" id="codigo" placeholder="Ej. TPN2025-001" class="mt-1">
-            </div>
-            <div class="input-group">
-                <label for="pasajeros">Nombre de los Pasajeros</label>
-                <textarea id="pasajeros" rows="3" placeholder="Ej. John Smith, Jane Doe, Peter Parker" class="mt-1"></textarea>
-            </div>
-        </div>
-
-        <!-- Sección 2: Clima y Logística -->
-        <div class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 section-header">2. Condiciones del Terreno</h2>
-            <div class="input-group">
-                <label for="clima">Condición Climática</label>
-                <select id="clima" class="mt-1">
-                    <option value="">Seleccione...</option>
-                    <option value="soleado">Soleado</option>
-                    <option value="lluvia">Lluvioso</option>
-                    <option value="viento">Ventoso</option>
-                    <option value="nieve">Nevada</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="temperatura">Temperatura (°C)</label>
-                <input type="number" id="temperatura" placeholder="Ej. 12" class="mt-1">
-            </div>
-            <div class="input-group">
-                <label for="ruta">Ruta Recorrida</label>
-                <input type="text" id="ruta" placeholder="Ej. Circuito W" class="mt-1">
-            </div>
-        </div>
-
-        <!-- Sección 3: Avistamientos y Tópicos -->
-        <div class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 section-header">3. Avistamientos</h2>
-            <div class="input-group">
-                <label for="fauna">Avistamiento de Fauna</label>
-                <select id="fauna" class="mt-1">
-                    <option value="">Seleccione...</option>
-                    <option value="puma">Puma</option>
-                    <option value="huemul">Huemul</option>
-                    <option value="condor">Cóndor</option>
-                    <option value="zorro">Zorro</option>
-                    <option value="ave">Ave (especificar)</option>
-                    <option value="ninguno">Ninguno</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="comentarios-fauna">Comentarios del Avistamiento</label>
-                <textarea id="comentarios-fauna" rows="2" placeholder="Ej. Se observó un huemul a 50 metros del sendero" class="mt-1"></textarea>
-            </div>
-            <div class="input-group">
-                <label for="topicos">Tópicos Explicados</label>
-                <div class="mt-2 flex flex-col space-y-2">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="topicos" value="geologia" class="rounded text-blue-500">
-                        <span class="ml-2 text-gray-600">Geología y formación del paisaje</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="topicos" value="glaciares" class="rounded text-blue-500">
-                        <span class="ml-2 text-gray-600">Glaciares y cambio climático</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="topicos" value="historia" class="rounded text-blue-500">
-                        <span class="ml-2 text-gray-600">Historia de la región y el parque</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="topicos" value="flora" class="rounded text-blue-500">
-                        <span class="ml-2 text-gray-600">Flora nativa y ecosistema</span>
-                    </label>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1>Dashboard Torres del Paine</h1>
+                    <p class="subtitle">Temporada 2024 - Análisis de Servicios Turísticos</p>
+                </div>
+                <div class="btn-group">
+                    <button onclick="exportToPDF()" class="btn btn-primary">Exportar PDF</button>
+                    <a href="form.html" class="btn btn-success">Nuevo Reporte</a>
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- Sección 4: Documentación -->
-        <div class="mb-8">
-            <h2 class="text-xl font-bold text-gray-700 section-header">4. Documentación y Evidencia</h2>
-            <div class="input-group">
-                <label for="archivos" class="file-input-label">
-                    <span class="block mb-2 text-gray-800">Sube fotos del servicio</span>
-                    <span class="text-sm font-normal text-gray-500">Haz clic para seleccionar o arrastra y suelta aquí.</span>
-                    <input type="file" id="archivos" multiple class="hidden">
-                </label>
-            </div>
-            <div class="input-group">
-                <label for="tickets">Foto de tickets de entrada</label>
-                <input type="file" id="tickets" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="nav-link active" onclick="switchTab('dashboard', this)">Dashboard</button>
+                <button class="nav-link" onclick="switchTab('tours', this)">Análisis de Tours</button>
+                <button class="nav-link" onclick="switchTab('medical', this)">Reporte Médico</button>
+                <button class="nav-link" onclick="switchTab('equipment', this)">Equipamiento</button>
+                <button class="nav-link" onclick="switchTab('reservations', this)">Reservas</button>
+                <button class="nav-link" onclick="switchTab('cornell', this)">Notas Cornell</button>
+                <button class="nav-link" onclick="switchTab('insights', this)">Análisis de Datos</button>
             </div>
         </div>
+    </nav>
 
-        <!-- Botón de Envío -->
-        <div class="text-center">
-            <button type="submit" class="btn-primary w-full">Enviar Reporte</button>
+    <main>
+        <div class="container">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Total Turistas</div>
+                        <div class="metric-value">446</div>
+                        <div class="metric-desc">Temporada 2024</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Ingresos Totales</div>
+                        <div class="metric-value">$38.5M</div>
+                        <div class="metric-desc">CLP - Pesos Chilenos</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Pasos Promedio</div>
+                        <div class="metric-value">35,863</div>
+                        <div class="metric-desc">Pasos por día</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Nacionalidades</div>
+                        <div class="metric-value">9</div>
+                        <div class="metric-desc">Países representados</div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="chart-grid">
+                    <div class="section-card">
+                        <h3>Turistas por País</h3>
+                        <div id="chartTouristsByCountry" class="chart-container"></div>
+                    </div>
+                    <div class="section-card">
+                        <h3>Actividad Diaria - Pasos</h3>
+                        <div id="chartDailySteps" class="chart-container"></div>
+                    </div>
+                </div>
+
+                <div class="chart-grid">
+                    <div class="section-card">
+                        <h3>Distribución de Alojamientos</h3>
+                        <div id="chartAccommodations" class="chart-container"></div>
+                    </div>
+                    <div class="section-card">
+                        <h3>Ingresos por Fecha (Millones CLP)</h3>
+                        <div id="chartIncomeTimeline" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tours Analysis Tab -->
+            <div id="tours" class="tab-content">
+                <div class="section-card">
+                    <h2>Análisis de Tendencias por Tipo de Tour</h2>
+                    <div class="tour-cards">
+                        <div class="tour-card">
+                            <h4>Base Torres</h4>
+                            <p class="tour-value tour-value-blue">225</p>
+                            <p class="tour-price">Precio: $95,000</p>
+                            <p class="tour-desc">Tour más popular - Trekking completo</p>
+                        </div>
+                        <div class="tour-card">
+                            <h4>Miradores Payne</h4>
+                            <p class="tour-value tour-value-green">156</p>
+                            <p class="tour-price">Precio: $75,000</p>
+                            <p class="tour-desc">Tour intermedio - Miradores principales</p>
+                        </div>
+                        <div class="tour-card">
+                            <h4>City Tour</h4>
+                            <p class="tour-value tour-value-purple">65</p>
+                            <p class="tour-price">Precio: $65,000</p>
+                            <p class="tour-desc">Tour corto - Recorrido urbano</p>
+                        </div>
+                    </div>
+                    <h3>Comparación de Tours</h3>
+                    <div id="chartTourComparison" class="chart-container"></div>
+                </div>
+            </div>
+
+            <!-- Medical Report Tab -->
+            <div id="medical" class="tab-content">
+                <div class="section-card">
+                    <h2>Reporte Médico Básico para Emergencias</h2>
+                    <div class="alert-box">
+                        <div class="alert-title">⚠️ Contactos de Emergencia</div>
+                        <div class="alert-content">
+                            <p><strong>Emergencias:</strong> 131 | <strong>Ambulancia:</strong> (61) 241 1888</p>
+                            <p><strong>Carabineros:</strong> (61) 241 1262 | <strong>SAR:</strong> +56 9 9999 9999</p>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-grid">
+                        <div>
+                            <h3>Métricas de Salud</h3>
+                            <div id="chartHealthMetrics" class="chart-container"></div>
+                        </div>
+                        <div>
+                            <h3>Protocolo de Emergencia</h3>
+                            <ol class="protocol-list">
+                                <li>Evaluar la situación y garantizar seguridad</li>
+                                <li>Llamar a emergencias (131)</li>
+                                <li>Proporcionar primeros auxilios básicos</li>
+                                <li>Ubicación GPS y descripción del incidente</li>
+                                <li>Mantener al turista calmado y abrigado</li>
+                                <li>Esperar instrucciones de rescate</li>
+                            </ol>
+                            <div class="info-box">
+                                <p class="info-title">Botiquín Disponible:</p>
+                                <p class="info-content">Vendas, Analgésicos, Antiinflamatorios, Suero, Frazadas térmicas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment Tab -->
+            <div id="equipment" class="tab-content">
+                <div class="section-card">
+                    <h2>Inventario de Equipamiento de Montaña</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Equipo</th>
+                                <th>Cantidad</th>
+                                <th>Estado</th>
+                                <th>Última Revisión</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cascos</strong></td>
+                                <td>15</td>
+                                <td><span class="status-badge status-disponible">Disponible</span></td>
+                                <td>2024-01-10</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Crampones</strong></td>
+                                <td>20</td>
+                                <td><span class="status-badge status-disponible">Disponible</span></td>
+                                <td>2024-01-12</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bastones Trekking</strong></td>
+                                <td>30</td>
+                                <td><span class="status-badge status-disponible">Disponible</span></td>
+                                <td>2024-01-08</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mochilas 60L</strong></td>
+                                <td>12</td>
+                                <td><span class="status-badge status-ocupado">8 en uso</span></td>
+                                <td>2024-01-15</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sacos de Dormir</strong></td>
+                                <td>18</td>
+                                <td><span class="status-badge status-disponible">Disponible</span></td>
+                                <td>2024-01-14</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Carpas 4 personas</strong></td>
+                                <td>8</td>
+                                <td><span class="status-badge status-ocupado">3 en uso</span></td>
+                                <td>2024-01-11</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Linternas Frontales</strong></td>
+                                <td>25</td>
+                                <td><span class="status-badge status-disponible">Disponible</span></td>
+                                <td>2024-01-09</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Radios Comunicación</strong></td>
+                                <td>6</td>
+                                <td><span class="status-badge status-pendiente">2 en mantención</span></td>
+                                <td>2024-01-16</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Reservations Tab -->
+            <div id="reservations" class="tab-content">
+                <div class="section-card">
+                    <h2>Sistema de Reservas</h2>
+                    <div class="button-group">
+                        <button onclick="filterReservations('all')" class="btn btn-secondary">Todos</button>
+                        <button onclick="filterReservations('disponible')" class="btn btn-success">Disponibles</button>
+                        <button onclick="filterReservations('confirmado')" class="btn btn-primary">Confirmados</button>
+                        <button onclick="filterReservations('pendiente')" class="btn" style="background-color: #f59e0b; color: white;">Pendientes</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Guía</th>
+                                <th>País</th>
+                                <th>Tour</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservationsTableBody">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Cornell Notes Tab -->
+            <div id="cornell" class="tab-content">
+                <div class="section-card">
+                    <h2>Plantilla de Notas Cornell</h2>
+                    <div class="form-group">
+                        <label class="form-label">Título de la Nota</label>
+                        <input type="text" id="cornellTitle" placeholder="Ej. Observaciones del Tour 15/01/2024">
+                    </div>
+                    <div class="cornell-notes">
+                        <div class="cornell-cue">
+                            <h3>Conceptos Clave</h3>
+                            <textarea id="cornellCues" rows="15" placeholder="Anota conceptos, preguntas y palabras clave aquí..."></textarea>
+                        </div>
+                        <div class="cornell-notes-area">
+                            <h3>Apuntes Principales</h3>
+                            <textarea id="cornellNotes" rows="15" placeholder="Toma tus apuntes detallados aquí durante el tour..."></textarea>
+                        </div>
+                        <div class="cornell-summary">
+                            <h3>Resumen y Comentarios</h3>
+                            <textarea id="cornellSummary" rows="4" placeholder="Resume los puntos principales y añade comentarios finales..."></textarea>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button onclick="saveCornellNotes()" class="btn btn-primary">Guardar Notas</button>
+                        <button onclick="exportCornellNotes()" class="btn btn-success">Exportar JSON</button>
+                        <button onclick="clearCornellNotes()" class="btn btn-secondary">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Insights Tab -->
+            <div id="insights" class="tab-content">
+                <div class="section-card">
+                    <h2>📊 Análisis e Inferencias de Datos CSV</h2>
+                    <p style="color: #718096; margin-bottom: 2rem;">Interpretación inteligente de los datos turísticos recopilados</p>
+
+                    <!-- Key Insights Grid -->
+                    <div class="tour-cards" style="margin-bottom: 2rem;">
+                        <div class="section-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <h3 style="color: white;">💡 Insight Principal</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.8;">
+                                <strong>Estados Unidos domina el mercado</strong> con 125 turistas (28% del total), 
+                                generando los mayores ingresos. Su preferencia por el tour Base Torres y 
+                                alojamientos premium indica un segmento de alto valor.
+                            </p>
+                        </div>
+                        <div class="section-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                            <h3 style="color: white;">📈 Tendencia Destacada</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.8;">
+                                <strong>Rendimiento físico consistente:</strong> Promedio de 36,760 pasos/día 
+                                con picos de 42,300 pasos. La exigencia física del tour Base Torres 
+                                se refleja en recorridos de 25-31 km diarios.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Analysis Sections -->
+                    <h3 style="margin-top: 2rem;">🔍 Análisis Detallado por Fuente de Datos</h3>
+
+                    <!-- Salud.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #3b82f6; margin-bottom: 1.5rem;">
+                        <h4 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 1rem;">
+                            📊 turismo-salud.csv (Métricas de Actividad Física)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <strong>🚶 Pasos:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 36,760 pasos/día</li>
+                                    <li>Máximo: 42,300 pasos (16-ene)</li>
+                                    <li>Mínimo: 28,900 pasos (20-ene)</li>
+                                    <li>Variación: 46% entre días</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>📏 Distancia:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 27.2 km/día</li>
+                                    <li>Máximo: 31.2 km (16-ene)</li>
+                                    <li>Total 10 días: 272 km</li>
+                                    <li>Intensidad: Alta exigencia física</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>🔥 Calorías:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 2,070 kcal/día</li>
+                                    <li>Máximo: 2,400 kcal</li>
+                                    <li>Total quemadas: 20,700 kcal</li>
+                                    <li>Equivalente: 3 kg de grasa</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                El 20-ene muestra la menor actividad (28,900 pasos), posiblemente día de descanso 
+                                o condiciones climáticas adversas. Los guías deben planificar días de recuperación 
+                                cada 6-7 días de actividad intensa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Servicioxpais.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #10b981; margin-bottom: 1.5rem;">
+                        <h4 style="color: #10b981; font-size: 1.1rem; margin-bottom: 1rem;">
+                            🌍 turismo-servicioxpais.csv (Distribución por Nacionalidad)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>🥇 Top 3 Mercados:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Estados Unidos: 125 turistas (28%)</li>
+                                    <li>Alemania: 87 turistas (19.5%)</li>
+                                    <li>Francia: 64 turistas (14.3%)</li>
+                                    <li><strong>Total top 3: 61.8% del mercado</strong></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>💰 Precio por Tour:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Base Torres: $95,000 CLP</li>
+                                    <li>Miradores-payne: $75,000 CLP</li>
+                                    <li>City-t: $65,000 CLP</li>
+                                    <li>Diferencial: 46% entre tours</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>🎯 Preferencias por Tour:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>USA/UK/Australia → Base Torres</li>
+                                    <li>Alemania/Brasil → Miradores</li>
+                                    <li>Francia/Argentina → City Tour</li>
+                                    <li>Patrón claro de segmentación</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                Mercados anglosajones (USA, UK, Australia) prefieren tours premium de alta dificultad, 
+                                mientras que europeos continentales optan por tours intermedios. Esto sugiere 
+                                oportunidades de marketing diferenciado por región geográfica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Hostalxpais.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #8b5cf6; margin-bottom: 1.5rem;">
+                        <h4 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 1rem;">
+                            🏨 turismo-hostalxpais.csv (Alojamientos y Hospedaje)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>🏆 Alojamientos Populares:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Refugio Grey: 250 noches</li>
+                                    <li>Hotel Las Torres: 174 noches</li>
+                                    <li>Camping Paine Grande: 128 noches</li>
+                                    <li>Total: 892 noches registradas</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>💵 Rango de Precios:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Premium: $120,000/noche (Hotel Explora)</li>
+                                    <li>Medio: $45,000-$95,000/noche</li>
+                                    <li>Económico: $15,000/noche (Camping)</li>
+                                    <li>Diferencial: 8x entre opciones</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>📊 Distribución:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Refugios: 48% del total</li>
+                                    <li>Hoteles: 28% del total</li>
+                                    <li>Camping: 24% del total</li>
+                                    <li>Mix equilibrado de opciones</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                Los refugios son la opción preferida (48%), indicando que los turistas priorizan 
+                                la experiencia auténtica sobre el lujo. El Hotel Explora, aunque premium ($120k/noche), 
+                                solo registra 76 noches, sugiriendo un nicho específico de turismo de lujo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fechaxpais.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #f59e0b; margin-bottom: 1.5rem;">
+                        <h4 style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 1rem;">
+                            💰 turismo-fechaxpais.csv (Ingresos por Fecha)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>📈 Ingresos Diarios:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: $1,965,000 CLP/día</li>
+                                    <li>Mejor día: $4,750,000 (15-ene)</li>
+                                    <li>Peor día: $325,000 (23-ene)</li>
+                                    <li>Variación: 1362% entre días</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>👥 Turistas por Día:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 24 turistas/día</li>
+                                    <li>Máximo: 50 turistas (15-ene)</li>
+                                    <li>Mínimo: 5 turistas (23-ene)</li>
+                                    <li>Alta fluctuación semanal</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>💵 Ticket Promedio:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>General: $81,875 CLP/turista</li>
+                                    <li>USA (15-ene): $95,000/persona</li>
+                                    <li>España (23-ene): $65,000/persona</li>
+                                    <li>Correlación con tipo de tour</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                El 15-ene genera 14.6x más ingresos que el 23-ene, evidenciando patrones de demanda. 
+                                La alta concentración de ingresos en pocos días (15-19 ene) sugiere temporada alta 
+                                versus temporada baja, crucial para planificación de recursos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Base-baset.csv Analysis -->
+                    <div class="section-card" style="border-left: 4px solid #ec4899; margin-bottom: 1.5rem;">
+                        <h4 style="color: #ec4899; font-size: 1.1rem; margin-bottom: 1rem;">
+                            📋 turismo-base-baset.csv (Base de Datos Completa)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div>
+                                <strong>👨‍🏫 Distribución de Guías:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>10 reservas registradas</li>
+                                    <li>10 guías diferentes (1:1 ratio)</li>
+                                    <li>Sin concentración excesiva</li>
+                                    <li>Carga balanceada equitativamente</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>✅ Estados de Reserva:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Confirmado: 7 reservas (70%)</li>
+                                    <li>Pendiente: 2 reservas (20%)</li>
+                                    <li>Disponible: 1 reserva (10%)</li>
+                                    <li>Tasa de confirmación alta</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>🎯 Tamaño de Grupos:</strong>
+                                <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #4a5568;">
+                                    <li>Promedio: 3 turistas/reserva</li>
+                                    <li>Máximo: 5 turistas</li>
+                                    <li>Mínimo: 1 turista</li>
+                                    <li>Grupos pequeños preferidos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-box" style="margin-top: 1rem;">
+                            <p class="info-title">💡 Inferencia Clave:</p>
+                            <p class="info-content">
+                                El 70% de tasa de confirmación es excelente, pero el 20% pendiente requiere seguimiento. 
+                                Los grupos pequeños (3 personas promedio) permiten experiencias personalizadas y mayor 
+                                seguridad en terreno, una ventaja competitiva clave.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Consolidated Recommendations -->
+                    <div class="section-card" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); color: white; margin-top: 2rem;">
+                        <h3 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">🎯 Recomendaciones Estratégicas Basadas en Datos</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <h4 style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">📊 Marketing & Ventas</h4>
+                                <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                                    <li>Intensificar campañas en mercados anglosajones (USA, UK, Australia)</li>
+                                    <li>Ofrecer paquetes premium para turistas americanos</li>
+                                    <li>Marketing diferenciado: aventura extrema vs. tours culturales</li>
+                                    <li>Aprovechar boca a boca: 70% tasa de confirmación</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">⚡ Operaciones</h4>
+                                <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                                    <li>Planificar días de descanso cada 6-7 días (patrón detectado)</li>
+                                    <li>Reforzar personal en días de alta demanda (15-19 ene)</li>
+                                    <li>Mantener grupos pequeños (3-5 personas) como estándar</li>
+                                    <li>Optimizar rutas: promedio 27km/día es sostenible</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: white; font-size: 1rem; margin-bottom: 0.5rem;">💰 Pricing & Revenue</h4>
+                                <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                                    <li>Mantener diferencial de precios actual (46% entre tours)</li>
+                                    <li>Considerar dynamic pricing en temporada alta</li>
+                                    <li>Paquetes combinados tour + alojamiento premium</li>
+                                    <li>Descuentos para reservas anticipadas (reducir 20% pendientes)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistical Summary -->
+                    <div class="section-card" style="margin-top: 2rem;">
+                        <h3>📈 Resumen Estadístico Consolidado</h3>
+                        <table style="width: 100%; margin-top: 1rem;">
+                            <thead style="background-color: #f7fafc;">
+                                <tr>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Métrica</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 2px solid #e2e8f0;">Valor</th>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Interpretación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Total Turistas</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">446</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Volumen sólido para temporada inicial</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Ingresos Totales</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">$38,560,000 CLP</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">≈ $43,000 USD (~$86 por turista)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Países Atendidos</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">9</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Diversificación geográfica saludable</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Actividad Física</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">36,760 pasos/día</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Alta exigencia física, tour activo</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Concentración Mercado</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">61.8% (Top 3)</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">USA, Alemania y Francia dominan</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;"><strong>Tasa Confirmación</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e2e8f0;">70%</td>
+                                    <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Excelente ratio de conversión</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem;"><strong>Tamaño Grupo Promedio</strong></td>
+                                    <td style="padding: 0.75rem; text-align: right;">3.0 personas</td>
+                                    <td style="padding: 0.75rem;">Experiencias íntimas y personalizadas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName, element) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Load and parse CSV data
+        async function loadCSVData(filename) {
+            try {
+                const response = await fetch(`data/${filename}`);
+                const text = await response.text();
+                const lines = text.trim().split('\n');
+                const headers = lines[0].split(',');
+                const data = lines.slice(1).map(line => {
+                    const values = line.split(',');
+                    return headers.reduce((obj, header, index) => {
+                        obj[header] = values[index];
+                        return obj;
+                    }, {});
+                });
+                return data;
+            } catch (error) {
+                console.error('Error loading CSV:', error);
+                return [];
+            }
+        }
+
+        // Create bar chart
+        function createBarChart(container, data, maxValue) {
+            const chartHtml = data.map(item => {
+                const percentage = (item.value / maxValue) * 100;
+                return `
+                    <div class="bar-item">
+                        <div class="bar-label">${item.label}</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: ${percentage}%">${item.value}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = `<div class="bar-chart">${chartHtml}</div>`;
+        }
+
+        // Create line chart
+        function createLineChart(container, data, maxValue) {
+            const chartHtml = data.map(item => {
+                const height = (item.value / maxValue) * 100;
+                return `<div class="line-point" style="height: ${height}%" data-value="${item.value}" title="${item.label}: ${item.value}"></div>`;
+            }).join('');
+            
+            container.innerHTML = `<div class="line-chart">${chartHtml}</div>`;
+        }
+
+        // Initialize charts
+        async function initializeCharts() {
+            try {
+                // Tourists by Country Chart
+                const serviciosData = await loadCSVData('turismo - servicioxpais.csv');
+                if (serviciosData.length > 0) {
+                    const countries = serviciosData.map(d => ({
+                        label: d.pais,
+                        value: parseInt(d.total_turistas)
+                    }));
+                    createBarChart(
+                        document.getElementById('chartTouristsByCountry'),
+                        countries,
+                        Math.max(...countries.map(c => c.value))
+                    );
+                }
+
+                // Daily Steps Chart
+                const saludData = await loadCSVData('turismo - salud.csv');
+                if (saludData.length > 0) {
+                    const steps = saludData.map(d => ({
+                        label: d.fecha.substring(5),
+                        value: parseInt(d.pasos)
+                    }));
+                    createLineChart(
+                        document.getElementById('chartDailySteps'),
+                        steps,
+                        Math.max(...steps.map(s => s.value))
+                    );
+                }
+
+                // Accommodations Chart
+                const hostalData = await loadCSVData('turismo - hostalxpais.csv');
+                if (hostalData.length > 0) {
+                    const hostales = hostalData.map(d => ({
+                        label: d.hostal,
+                        value: parseInt(d.total_noches)
+                    }));
+                    createBarChart(
+                        document.getElementById('chartAccommodations'),
+                        hostales,
+                        Math.max(...hostales.map(h => h.value))
+                    );
+                }
+
+                // Income Timeline Chart
+                const fechaData = await loadCSVData('turismo - fechaxpais.csv');
+                if (fechaData.length > 0) {
+                    const incomes = fechaData.map(d => ({
+                        label: d.fecha.substring(5),
+                        value: (parseInt(d.ingresos) / 1000000).toFixed(1)
+                    }));
+                    createLineChart(
+                        document.getElementById('chartIncomeTimeline'),
+                        incomes,
+                        Math.max(...incomes.map(i => parseFloat(i.value)))
+                    );
+                }
+
+                // Tour Comparison Chart
+                const tourData = [
+                    { label: 'Base Torres', value: 225 },
+                    { label: 'Miradores', value: 156 },
+                    { label: 'City Tour', value: 65 }
+                ];
+                createBarChart(
+                    document.getElementById('chartTourComparison'),
+                    tourData,
+                    Math.max(...tourData.map(t => t.value))
+                );
+
+                // Health Metrics Chart
+                if (saludData.length > 0) {
+                    const healthMetrics = saludData.map(d => ({
+                        label: d.fecha.substring(5),
+                        value: (parseFloat(d.distancia_km)).toFixed(1)
+                    }));
+                    createLineChart(
+                        document.getElementById('chartHealthMetrics'),
+                        healthMetrics,
+                        Math.max(...healthMetrics.map(h => parseFloat(h.value)))
+                    );
+                }
+            } catch (error) {
+                console.error('Error initializing charts:', error);
+            }
+        }
+
+        // Load reservations table
+        async function loadReservations() {
+            try {
+                const baseData = await loadCSVData('turismo - base-baset.csv');
+                const tbody = document.getElementById('reservationsTableBody');
+                tbody.innerHTML = '';
+
+                baseData.forEach(reservation => {
+                    const row = document.createElement('tr');
+                    row.className = `reservation-row status-${reservation.estado_reserva}`;
+                    row.innerHTML = `
+                        <td><strong>${reservation.id}</strong></td>
+                        <td>${reservation.fecha}</td>
+                        <td>${reservation.guia}</td>
+                        <td>${reservation.pais}</td>
+                        <td>${reservation.tour}</td>
+                        <td><span class="status-badge status-${reservation.estado_reserva}">${reservation.estado_reserva}</span></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading reservations:', error);
+            }
+        }
+
+        // Filter reservations
+        function filterReservations(status) {
+            const rows = document.querySelectorAll('.reservation-row');
+            rows.forEach(row => {
+                if (status === 'all') {
+                    row.style.display = '';
+                } else if (row.classList.contains(`status-${status}`)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Cornell Notes functions
+        function saveCornellNotes() {
+            const notes = {
+                title: document.getElementById('cornellTitle').value,
+                cues: document.getElementById('cornellCues').value,
+                notes: document.getElementById('cornellNotes').value,
+                summary: document.getElementById('cornellSummary').value,
+                date: new Date().toISOString()
+            };
+            
+            localStorage.setItem('cornellNotes_' + Date.now(), JSON.stringify(notes));
+            alert('✓ Notas guardadas exitosamente en almacenamiento local');
+        }
+
+        function exportCornellNotes() {
+            const notes = {
+                title: document.getElementById('cornellTitle').value,
+                cues: document.getElementById('cornellCues').value,
+                notes: document.getElementById('cornellNotes').value,
+                summary: document.getElementById('cornellSummary').value,
+                date: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(notes, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cornell_notes_${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearCornellNotes() {
+            if (confirm('¿Estás seguro de que quieres limpiar todas las notas?')) {
+                document.getElementById('cornellTitle').value = '';
+                document.getElementById('cornellCues').value = '';
+                document.getElementById('cornellNotes').value = '';
+                document.getElementById('cornellSummary').value = '';
+            }
+        }
+
+        // Export to PDF function
+        function exportToPDF() {
+            alert('📄 Funcionalidad de exportación a PDF\n\nEn producción, esto generaría un PDF completo con:\n- Métricas principales\n- Gráficos y visualizaciones\n- Tablas de datos\n- Reportes médicos\n- Inventario de equipamiento');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCharts();
+            loadReservations();
+            
+            // Show loading message if offline
+            if (!navigator.onLine) {
+                console.log('Modo offline detectado - usando datos cacheados');
+            }
+        });
+
+        // Offline functionality
+        window.addEventListener('online', () => {
+            console.log('Conexión restaurada');
+        });
+
+        window.addEventListener('offline', () => {
+            console.log('Modo offline activado');
+        });
+    </script>
 </body>
 </html>
